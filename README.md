@@ -26,10 +26,6 @@ The goal of this project is to build a production-ready website following indust
 ## 🛠️ Tech Stack
 
 ### Frontend
-
-- React.js
-- Vite
-- JavaScript (ES6+)
 - Tailwind CSS
 - React Router DOM
 - Motion (Animation)
