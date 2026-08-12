@@ -1,48 +1,26 @@
-# Rashmi Portfolio Website 🚀
+Rashmi Pandey — Portfolio 🚀
 
-A modern, responsive, and animated personal portfolio website built to showcase my skills, experience, projects, and technical journey as a Frontend Developer.
+Personal portfolio website showcasing my experience, skills, projects, and journey as a Frontend Developer.
 
-The goal of this project is to build a production-ready website following industry-level development practices with clean architecture, reusable components, performance optimization, and scalable code structure.
+✨ Features
+Responsive design
+About Me
+Skills & technologies
+Professional experience
+Project showcase
+Resume download
+Contact section
+🛠️ Tech Stack
+HTML5
+CSS3
+JavaScript
+🚀 Run Locally
 
----
+Clone the repository and open portfolio.html in your browser.
 
-## ✨ Features
+git clone https://github.com/rashmipanday06/portfolio.git
+📄 Resume
 
-- Modern and responsive UI
-- Smooth animations and transitions
-- Interactive user experience
-- Personal introduction and career journey
-- Skills and technology showcase
-- Professional experience section
-- Project showcase
-- Technical blogs integration
-- Contact form
-- Resume download
-- SEO optimized structure
-- Performance focused development
+My resume is included in this repository as Rashmi-Pandey-Resume.pdf.
 
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-- Tailwind CSS
-- React Router DOM
-- Motion (Animation)
-- Axios
-
-### Testing
-
-- Vitest
-- React Testing Library
-
-### Development Tools
-
-- Git
-- GitHub
-- ESLint
-- Prettier
-
----
-
-## 📁 Project Structure
+Built with ❤️ by Rashmi Pandey
