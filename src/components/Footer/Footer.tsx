@@ -1,4 +1,6 @@
-import { ArrowUpRight  } from "lucide-react";
+
+import { ArrowUpRight } from "lucide-react";
+import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 import Container from "../UI/Container";
 
 const footerLinks = [
@@ -12,35 +14,35 @@ const footerLinks = [
 
 function Footer() {
   return (
-    <footer className="border-t border-white/5">
+    <footer className="border-t border-zinc-900/10">
       <Container>
         <div className="grid gap-12 py-14 md:grid-cols-[1.2fr_0.8fr] md:py-16">
           {/* Brand */}
           <div>
             <a
               href="#home"
-              className="text-xl font-semibold tracking-tight text-white"
+              className="text-xl font-semibold tracking-tight text-zinc-900"
             >
-              Rashmi<span className="text-violet-400">.</span>
+              Rashmi<span className="text-orange-700">.</span>
             </a>
 
-            <p className="mt-4 max-w-md text-sm leading-6 text-zinc-500">
+            <p className="mt-4 max-w-md text-sm leading-6 text-zinc-600">
               Frontend developer building scalable, responsive, and
               performance-focused web experiences with React and TypeScript.
             </p>
 
             <a
               href="mailto:hello@rashmipanday.com"
-              className="mt-5 inline-flex items-center gap-2 text-sm text-zinc-300 transition-colors hover:text-violet-400"
+              className="mt-5 inline-flex items-center gap-2 break-all text-sm font-medium text-zinc-800 transition-colors hover:text-orange-700"
             >
               hello@rashmipanday.com
-              <ArrowUpRight size={15} />
+              <ArrowUpRight size={15} className="shrink-0" />
             </a>
           </div>
 
           {/* Navigation */}
           <div className="md:ml-auto md:w-full md:max-w-sm">
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-zinc-600">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-700">
               Navigation
             </p>
 
@@ -49,42 +51,45 @@ function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-sm text-zinc-500 transition-colors hover:text-white"
+                  className="text-sm text-zinc-600 transition-colors hover:text-orange-700"
                 >
                   {link.label}
                 </a>
               ))}
             </div>
 
+            {/* Social links */}
             <div className="mt-7 flex items-center gap-3">
               <a
                 href="https://www.linkedin.com/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-zinc-400 transition-all hover:border-white/20 hover:bg-white/5 hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-900/15 text-zinc-700 transition-all hover:border-orange-700 hover:bg-orange-700 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600"
               >
-                {/* <Linkedin size={17} /> */}
+                <FaLinkedinIn size={17} aria-hidden="true" />
               </a>
 
               <a
                 href="https://github.com/rashmipanday06"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-zinc-400 transition-all hover:border-white/20 hover:bg-white/5 hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-900/15 text-zinc-700 transition-all hover:border-orange-700 hover:bg-orange-700 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600"
               >
-                {/* <Github size={17} /> */}
+                <FaGithub size={17} aria-hidden="true" />
               </a>
             </div>
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col gap-3 border-t border-white/5 py-6 text-xs text-zinc-600 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Rashmi Pandey. All rights reserved.</p>
+        <div className="flex flex-col gap-3 border-t border-zinc-900/10 py-6 text-xs text-zinc-600 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} Rashmi Pandey. All rights reserved.
+          </p>
 
-          <p>Built with React & TypeScript.</p>
+          <p>Built with React &amp; TypeScript.</p>
         </div>
       </Container>
     </footer>

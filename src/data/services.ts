@@ -1,3 +1,4 @@
+
 export interface Service {
   title: string;
   description: string;
@@ -26,12 +27,23 @@ export const services: Service[] = [
   {
     title: "Website Optimization",
     description:
-      "Improving frontend performance, responsiveness, rendering efficiency, and overall user experience.",
+      "Improving frontend performance, rendering efficiency, responsiveness, and overall user experience.",
     technologies: [
       "Code Splitting",
       "Lazy Loading",
       "Memoization",
       "Virtualization",
+    ],
+  },
+  {
+    title: "Bug Fixing & Maintenance",
+    description:
+      "Diagnosing and resolving frontend issues, fixing responsive layout problems, debugging React components, and maintaining existing websites.",
+    technologies: [
+      "React",
+      "JavaScript",
+      "TypeScript",
+      "Browser DevTools",
     ],
   },
 ];

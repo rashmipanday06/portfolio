@@ -28,8 +28,8 @@ const theme = {
 
 // TODO: replace with your real numbers
 const stats = [
-  { value: "3+", label: "Years building for the web" },
-  { value: "15+", label: "Projects shipped" },
+  { value: "4+", label: "Years building for the web" },
+  { value: "6+", label: "Projects shipped" },
   { value: "4", label: "Enterprise & client products" },
 ];
 
