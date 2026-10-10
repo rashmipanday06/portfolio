@@ -1,4 +1,9 @@
 import type { Project } from "../types/project";
+import erp from "../../src/assets/images/erp.jpg"
+import arstonellp from "../../src/assets/images/arstonellp.PNG"
+import admindasboard from "../../src/assets/images/adminpanel.PNG"
+import epay from "../../src/assets/images/epaytlm.PNG"
+import taskflow from "../../src/assets/images/task-flow.PNG"
 
 export const projects: Project[] = [
   {
@@ -16,6 +21,7 @@ export const projects: Project[] = [
     status: "live",
     liveUrl: "https://www.barstonellp.com",
     featured: true,
+    image: arstonellp,
   },
 
   {
@@ -36,7 +42,9 @@ export const projects: Project[] = [
       "https://react-admin-starter-sigma.vercel.app/dashboard",
     githubUrl:
       "https://github.com/rashmipanday06/react-admin-starter",
+
     featured: true,
+        image: admindasboard,
   },
 
   {
@@ -54,6 +62,7 @@ export const projects: Project[] = [
     category: "Industry Project",
     status: "completed",
     featured: true,
+    image: erp,
   },
 
   {
@@ -69,6 +78,7 @@ export const projects: Project[] = [
     ],
     category: "Industry Project",
     status: "completed",
+    image: '../assets/images/sales-automation-platform.png',
     featured: false,
   },
 
@@ -85,6 +95,7 @@ export const projects: Project[] = [
     category: "Industry Project",
     status: "completed",
     featured: false,
+    image: epay,
   },
 
   {
@@ -119,5 +130,6 @@ export const projects: Project[] = [
     githubUrl:
       "https://github.com/rashmipanday06/taskflow-web",
     featured: true,
+    image: taskflow,
   },
 ];
