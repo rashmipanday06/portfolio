@@ -1,0 +1,66 @@
+/* Fonts must stay at the very top of the file */
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap");
+
+/* Tailwind v4: */
+@import "tailwindcss";
+/* Tailwind v3: replace the line above with
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
+
+/* ---------- Design tokens (change the whole site from here) ---------- */
+:root {
+  --bg: #faf9f6;           /* warm white */
+  --ink: #202124;          /* charcoal */
+  --ink-soft: #4a4d52;     /* body text */
+  --ink-muted: #6b6e73;    /* labels */
+  --line: #e7e4dd;         /* subtle warm borders */
+  --accent: #68745c;       /* muted olive. Deep navy alternative: #263b53 */
+  --accent-hover: #566149; /* navy alternative: #1b2b3e */
+  --accent-tint: #eef0ea;  /* navy alternative: #e8ecf1 */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: "Inter", system-ui, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+/* Soft dot grid that fades out toward the bottom right of the hero */
+.bg-dots {
+  background-image: radial-gradient(rgba(32, 33, 36, 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse at 25% 15%, #000 15%, transparent 70%);
+  mask-image: radial-gradient(ellipse at 25% 15%, #000 15%, transparent 70%);
+}
+
+/* Single page-load sequence for the hero */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+.rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise { animation: none; }
+  * { transition-duration: 0.01ms !important; }
+}

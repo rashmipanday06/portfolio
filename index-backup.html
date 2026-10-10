@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rashmi Pandey — Frontend Engineer, React Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0D0F14;
+    --panel:#161A22;
+    --panel-2:#1D2230;
+    --line:#282E3D;
+    --paper:#EDEBE6;
+    --muted:#8B93A7;
+    --blue:#5B8CFF;
+    --amber:#FFB648;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--blue);color:var(--ink);}
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  section{padding:120px 0;position:relative;}
+  @media (max-width:640px){ section{padding:72px 0;} .wrap{padding:0 20px;} }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(13,15,20,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:18px;padding-bottom:18px;
+  }
+  .brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;}
+  .brand span{color:var(--blue);}
+  .nav-links{display:flex;gap:28px;align-items:center;}
+  .nav-links a{font-size:0.92rem;color:var(--muted);transition:color .2s;}
+  .nav-links a:hover{color:var(--paper);}
+  .status-pill{
+    display:flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:0.78rem;
+    color:#8DF0B0;
+    background:rgba(141,240,176,0.08);
+    border:1px solid rgba(141,240,176,0.25);
+    padding:6px 12px;border-radius:100px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:#8DF0B0;box-shadow:0 0 0 0 rgba(141,240,176,.6);animation:pulse 2s infinite;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(141,240,176,.5);}
+    70%{box-shadow:0 0 0 6px rgba(141,240,176,0);}
+    100%{box-shadow:0 0 0 0 rgba(141,240,176,0);}
+  }
+  @media (max-width:800px){ .nav-links a:not(.status-pill){display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{padding-top:96px;padding-bottom:80px;}
+  .hero-grid{
+    display:grid;grid-template-columns:1.35fr 0.9fr;gap:56px;align-items:start;
+  }
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--amber);
+    margin-bottom:20px;display:block;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 4.2vw, 3.4rem);
+    line-height:1.15;
+    margin-bottom:28px;
+  }
+  .jsx-line{display:block;}
+  .tag-name{color:var(--blue);}
+  .prop{color:var(--amber);}
+  .str{color:#9FE6B0;}
+  .val{color:#FF8A8A;}
+  .punc{color:var(--muted);}
+
+  .hero p.lede{
+    color:var(--muted);font-size:1.08rem;max-width:52ch;margin-bottom:36px;
+  }
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px;}
+  .btn{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:0.94rem;
+    padding:13px 24px;border-radius:10px;border:1px solid transparent;
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    transition:transform .18s ease, background .18s ease, border-color .18s ease;
+  }
+  .btn-primary{background:var(--blue);color:#0D0F14;}
+  .btn-primary:hover{transform:translateY(-2px);background:#7BA0FF;}
+  .btn-ghost{border-color:var(--line);color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--blue);transform:translateY(-2px);}
+
+  .stat-row{display:flex;gap:36px;flex-wrap:wrap;}
+  .stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.5rem;}
+  .stat span{color:var(--muted);font-size:0.85rem;}
+
+  /* status card (signature element) */
+  .status-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+    position:relative;
+    overflow:hidden;
+  }
+  .status-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--blue),var(--amber));
+  }
+  .status-card .top-row{
+    display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;
+  }
+  .status-card .top-row .label{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--muted);}
+  .status-card h4{font-size:1rem;margin-bottom:4px;}
+  .status-card .row{
+    display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);
+    font-size:0.88rem;
+  }
+  .status-card .row span:first-child{color:var(--muted);}
+  .status-card .row span:last-child{font-family:'JetBrains Mono',monospace;}
+  .avail-badge{
+    display:inline-flex;align-items:center;gap:6px;background:rgba(141,240,176,.1);
+    color:#8DF0B0;border:1px solid rgba(141,240,176,.3);padding:4px 10px;border-radius:100px;
+    font-family:'JetBrains Mono',monospace;font-size:0.75rem;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .sec-head{margin-bottom:52px;max-width:60ch;}
+  .sec-head .eyebrow{margin-bottom:12px;}
+  .sec-head h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:14px;}
+  .sec-head p{color:var(--muted);}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  @media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{color:var(--muted);margin-bottom:16px;}
+  .about-grid p strong{color:var(--paper);font-weight:600;}
+  .pillars{display:flex;flex-direction:column;gap:22px;}
+  .pillar{border-left:2px solid var(--line);padding-left:18px;}
+  .pillar:hover{border-left-color:var(--blue);}
+  .pillar h4{font-size:1rem;margin-bottom:6px;}
+  .pillar p{color:var(--muted);font-size:0.92rem;margin:0;}
+
+  /* ---------- STACK ---------- */
+  .stack-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+  @media (max-width:700px){.stack-groups{grid-template-columns:1fr;}}
+  .stack-group{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;}
+  .stack-group h4{font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--amber);margin-bottom:16px;font-weight:500;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-family:'JetBrains Mono',monospace;font-size:0.8rem;
+    background:var(--panel-2);border:1px solid var(--line);padding:6px 12px;border-radius:8px;color:var(--paper);
+    transition:border-color .2s, color .2s;
+  }
+  .chip:hover{border-color:var(--blue);color:var(--blue);}
+
+  /* ---------- WORK ---------- */
+  .work-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);}
+  .work-item{
+    background:var(--panel);padding:32px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;
+    transition:background .2s;
+  }
+  .work-item:hover{background:var(--panel-2);}
+  @media (max-width:700px){.work-item{grid-template-columns:1fr;}}
+  .work-item h3{font-size:1.2rem;margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+  .work-item .role{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--amber);font-weight:400;}
+  .work-item p.desc{color:var(--muted);max-width:56ch;margin-bottom:14px;}
+  .work-item .chip-row{margin-bottom:0;}
+  .metric{text-align:right;min-width:140px;}
+  .metric b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.6rem;color:#8DF0B0;}
+  .metric span{color:var(--muted);font-size:0.8rem;}
+  @media (max-width:700px){.metric{text-align:left;}}
+
+  /* ---------- PROCESS ---------- */
+  .process-list{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  @media (max-width:900px){.process-list{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.process-list{grid-template-columns:1fr;}}
+  .process-item{padding:22px 0;border-top:2px solid var(--line);}
+  .process-item .num{font-family:'JetBrains Mono',monospace;color:var(--blue);font-size:0.85rem;display:block;margin-bottom:10px;}
+  .process-item h4{font-size:1.02rem;margin-bottom:8px;}
+  .process-item p{color:var(--muted);font-size:0.9rem;}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  @media (max-width:800px){.quote-grid{grid-template-columns:1fr;}}
+  .quote-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;}
+  .quote-card p.q{font-size:1.05rem;margin-bottom:20px;color:var(--paper);}
+  .quote-card p.q::before{content:"“";color:var(--amber);font-size:1.4rem;}
+  .who{display:flex;align-items:center;gap:12px;}
+  .avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--amber));flex-shrink:0;}
+  .who b{display:block;font-size:0.92rem;}
+  .who span{color:var(--muted);font-size:0.8rem;}
+
+  /* ---------- ENGAGE / PRICING ---------- */
+  .engage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media (max-width:800px){.engage-grid{grid-template-columns:1fr;}}
+  .engage-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;}
+  .engage-card.featured{border-color:var(--blue);background:var(--panel-2);}
+  .engage-card h4{font-size:1.05rem;margin-bottom:6px;}
+  .engage-card .price{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;color:var(--amber);margin-bottom:14px;}
+  .engage-card ul{list-style:none;margin-bottom:20px;flex:1;}
+  .engage-card li{color:var(--muted);font-size:0.88rem;padding:6px 0;border-top:1px solid var(--line);}
+  .engage-card li:first-child{border-top:none;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-box{
+    background:var(--panel);border:1px solid var(--line);border-radius:20px;
+    padding:64px 48px;text-align:center;position:relative;overflow:hidden;
+  }
+  @media (max-width:640px){.contact-box{padding:44px 24px;}}
+  .contact-box::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 0%, rgba(91,140,255,0.12), transparent 60%);
+    pointer-events:none;
+  }
+  .contact-box h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:16px;}
+  .contact-box p{color:var(--muted);max-width:48ch;margin:0 auto 32px;}
+  .contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+  footer{border-top:1px solid var(--line);padding:32px 0;}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  footer p{color:var(--muted);font-size:0.85rem;font-family:'JetBrains Mono',monospace;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    .dot{animation:none;}
+    *{scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">rashmi<span>.</span>pandey</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#engage">Engagements</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="status-pill"><span class="dot"></span>Open for freelance work</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">// frontend engineer · react specialist</span>
+      <h1>
+        <span class="jsx-line"><span class="punc">&lt;</span><span class="tag-name">Developer</span></span>
+        <span class="jsx-line" style="padding-left:1.2em">
+          <span class="prop">name</span><span class="punc">=</span><span class="str">"Rashmi Pandey"</span>
+        </span>
+        <span class="jsx-line" style="padding-left:1.2em">
+          <span class="prop">experience</span><span class="punc">={</span><span class="val">4</span><span class="punc">}</span><span class="punc">+</span> <span class="punc">years</span>
+        </span>
+        <span class="jsx-line" style="padding-left:1.2em">
+          <span class="prop">stack</span><span class="punc">={[</span><span class="str">"React"</span><span class="punc">, </span><span class="str">"Next.js"</span><span class="punc">, </span><span class="str">"TypeScript"</span><span class="punc">]}</span>
+        </span>
+        <span class="jsx-line" style="padding-left:1.2em">
+          <span class="prop">available</span><span class="punc">={</span><span class="val">true</span><span class="punc">}</span>
+        </span>
+        <span class="jsx-line"><span class="punc">/&gt;</span></span>
+      </h1>
+      <p class="lede">I build fast, accessible React interfaces for startups and product teams — the kind of frontend work that ships on time and doesn't need a rewrite in six months. Now taking on freelance and contract projects.</p>
+      <div class="cta-row">
+        <a href="#contact" class="btn btn-primary">Start a project →</a>
+        <a href="#work" class="btn btn-ghost">See recent work</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b>4+</b><span>years in production React</span></div>
+        <div class="stat"><b>5</b><span>projects shipped, industry + personal</span></div>
+        <div class="stat"><b>&lt;4hrs</b><span>average reply time</span></div>
+      </div>
+    </div>
+
+    <div class="status-card reveal">
+      <div class="top-row">
+        <span class="label mono">availability</span>
+        <span class="avail-badge"><span class="dot" style="animation:none;box-shadow:none;"></span>online</span>
+      </div>
+      <h4>Currently accepting</h4>
+      <p style="color:var(--muted);font-size:0.88rem;">New freelance projects — starting immediately</p>
+      <div class="row"><span>Response time</span><span>&lt; 4 hours</span></div>
+      <div class="row"><span>Engagement</span><span>Contract / retainer</span></div>
+      <div class="row"><span>Timezone</span><span>IST (UTC+5:30)</span></div>
+      <div class="row"><span>Rate</span><span>Let's discuss</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow mono">01 — about</span>
+      <h2>Four+ years of turning designs into interfaces that hold up.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I'm Rashmi, a frontend engineer with <strong>4+ years of experience</strong> building React applications at industry level — growing from an Associate Software Engineer role into a Frontend Lead position, currently leading UI development on a large-scale ERP system. I've shipped four production projects as part of engineering teams, plus a personal admin panel built end-to-end on my own — from architecture to deployment.</p>
+        <p>My focus is the part of frontend that's easy to get wrong: state that doesn't fight itself, components that don't leak assumptions, secure authentication flows, and performance that holds up once real data and real users show up.</p>
+        <p>I'm now opening up my time to <strong>freelance and contract work</strong>, and I care about the handoff as much as the build — clean PRs, clear docs, and code the next engineer (or future me) can actually read.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <h4>Ship, don't perfect</h4>
+          <p>Scoped, working increments over big-bang launches. You see progress every week.</p>
+        </div>
+        <div class="pillar">
+          <h4>Accessible by default</h4>
+          <p>Semantic markup, keyboard navigation, and contrast checked in — not bolted on at the end.</p>
+        </div>
+        <div class="pillar">
+          <h4>Performance is a feature</h4>
+          <p>Bundle size, render cost, and load time are tracked from the first commit, not audited later.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow mono">02 — stack</span>
+      <h2>What I build with</h2>
+    </div>
+    <div class="stack-groups">
+      <div class="stack-group reveal">
+        <h4>frontend</h4>
+        <div class="chip-row">
+          <span class="chip">JavaScript (ES6+)</span><span class="chip">TypeScript</span><span class="chip">React.js</span>
+          <span class="chip">Next.js</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
+          <span class="chip">React Router DOM</span><span class="chip">Redux Toolkit</span><span class="chip">Responsive Web Design</span>
+        </div>
+      </div>
+      <div class="stack-group reveal">
+        <h4>testing & tools</h4>
+        <div class="chip-row">
+          <span class="chip">Jest</span><span class="chip">React Testing Library</span><span class="chip">Git</span>
+          <span class="chip">GitHub</span><span class="chip">Vite</span><span class="chip">npm</span>
+        </div>
+      </div>
+      <div class="stack-group reveal" style="grid-column:1 / -1;">
+        <h4>core expertise</h4>
+        <div class="chip-row">
+          <span class="chip">Component-Based Architecture</span><span class="chip">State Management</span>
+          <span class="chip">API Integration</span><span class="chip">Authentication & Authorization</span>
+          <span class="chip">Performance Optimization</span><span class="chip">Responsive UI Development</span>
+          <span class="chip">Reusable Components</span><span class="chip">Modern JavaScript</span><span class="chip">Clean Code</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow mono">03 — selected work</span>
+      <h2>Recent projects</h2>
+      <p>Four industry-level projects and one personal build — a role-based admin panel I built end-to-end on my own.</p>
+    </div>
+    <div class="work-list">
+      <div class="work-item reveal">
+        <div>
+          <h3>Labor Management System</h3>
+          <p class="desc">A system to track employee attendance — clock in/out, leave requests, and overtime. I built and integrated reusable React components connected to backend APIs, keeping the UI consistent across multiple modules of the platform.</p>
+          <div class="chip-row">
+            <span class="chip">React.js</span><span class="chip">Redux</span><span class="chip">REST APIs</span>
+          </div>
+        </div>
+      </div>
+      <div class="work-item reveal">
+        <div>
+          <h3>Sales Automation Platform</h3>
+          <p class="desc">An order and inventory tracker that shows how many products are ordered, shipped, or dispatched, and flags whether deliveries are on time. Built from scratch in a cross-functional team of 4, working in Agile sprints and contributing to architecture decisions from day one.</p>
+          <div class="chip-row">
+            <span class="chip">React.js</span><span class="chip">TypeScript</span><span class="chip">Redux Toolkit</span><span class="chip">Agile/Scrum</span>
+          </div>
+        </div>
+      </div>
+      <div class="work-item reveal">
+        <div>
+          <h3>Analytics Dashboard</h3>
+          <p class="desc">An internal dashboard giving visibility into employee data — leaves applied, punches missed, and key metrics at a glance. Architected and built from scratch as the primary UI developer on a 3-person team, using Redux Toolkit for centralized state management.</p>
+          <div class="chip-row">
+            <span class="chip">React.js</span><span class="chip">TypeScript</span><span class="chip">Next.js</span><span class="chip">Redux Toolkit</span>
+          </div>
+        </div>
+      </div>
+      <div class="work-item reveal">
+        <div>
+          <h3>ERP System</h3>
+          <p class="desc">A full ERP frontend covering purchases, sales, material management, wastage tracking, and accounts, including complex inventory, finance, and reporting modules. Led end-to-end optimisation — refactored legacy components and cut redundant renders with React.memo and useMemo — and managed complex state for user roles, dynamic forms, and multi-level data workflows.</p>
+          <div class="chip-row">
+            <span class="chip">React.js</span><span class="chip">TypeScript</span><span class="chip">Redux Toolkit</span><span class="chip">Next.js</span><span class="chip">React.memo</span>
+          </div>
+        </div>
+      </div>
+      <div class="work-item reveal">
+        <div>
+          <h3>Admin Panel <span class="role">personal project · solo build</span></h3>
+          <p class="desc">A role-based admin panel built end-to-end on my own — dynamic dashboard statistics, user management, order management, authentication with logout flow, client-side routing, API integration with proper loading and error states, and fully responsive across desktop, tablet, and mobile.</p>
+          <div class="chip-row">
+            <span class="chip">React.js</span><span class="chip">TypeScript</span><span class="chip">Redux Toolkit</span><span class="chip">Context API</span><span class="chip">Chart.js</span><span class="chip">Tailwind CSS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:24px;display:flex;gap:20px;flex-wrap:wrap;">
+      <a href="https://react-admin-starter-sigma.vercel.app/dashboard" target="_blank" rel="noopener" style="color:#8DF0B0;font-family:'JetBrains Mono',monospace;font-size:0.9rem;">↗ live demo</a>
+      <a href="https://github.com/rashmipanday06/react-admin-starter" target="_blank" rel="noopener" style="color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:0.9rem;">↗ view on GitHub</a>
+    </p>
+  </div>
+</section>
+
+<section id="process" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow mono">04 — process</span>
+      <h2>How a project runs</h2>
+      <p>A real sequence — this is the order things happen in, start to finish.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-item reveal">
+        <span class="num">01</span>
+        <h4>Discover</h4>
+        <p>A short call to scope the problem, constraints, and what "done" looks like.</p>
+      </div>
+      <div class="process-item reveal">
+        <span class="num">02</span>
+        <h4>Plan</h4>
+        <p>A written proposal: scope, milestones, timeline, and price — no surprises later.</p>
+      </div>
+      <div class="process-item reveal">
+        <span class="num">03</span>
+        <h4>Build</h4>
+        <p>Weekly demos of working software, not slides. You always know where things stand.</p>
+      </div>
+      <div class="process-item reveal">
+        <span class="num">04</span>
+        <h4>Ship & hand off</h4>
+        <p>Deployed, documented, and handed off cleanly — with a short support window included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="engage" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow mono">05 — engagements</span>
+      <h2>Ways to work together</h2>
+    </div>
+    <div class="engage-grid">
+      <div class="engage-card reveal">
+        <h4>Project-based</h4>
+        <div class="price">Custom quote</div>
+        <ul>
+          <li>Fixed scope, fixed price</li>
+          <li>Weekly progress demos</li>
+          <li>Best for a defined feature or MVP</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Get a quote</a>
+      </div>
+      <div class="engage-card featured reveal">
+        <h4>Monthly retainer</h4>
+        <div class="price">Custom quote</div>
+        <ul>
+          <li>Dedicated hours each week</li>
+          <li>Priority response &lt; 4hrs</li>
+          <li>Best for ongoing product work</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Check availability</a>
+      </div>
+      <div class="engage-card reveal">
+        <h4>Hourly</h4>
+        <div class="price">Custom quote</div>
+        <ul>
+          <li>No minimum commitment</li>
+          <li>Good for audits & fixes</li>
+          <li>Best for short, well-defined tasks</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost">Get a quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <span class="eyebrow mono">06 — contact</span>
+      <h2>Have a project in mind?</h2>
+      <p>Tell me what you're building. I reply within 4 hours on weekdays, and every first call is free.</p>
+      <div class="contact-links">
+        <a href="mailto:rashmipanday06598@gmail.com" class="btn btn-primary">rashmipanday06598@gmail.com</a>
+        <a href="https://www.linkedin.com/in/rashmi-pandey-219b12219/" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/rashmipanday06" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+        <a href="Rashmi-Pandey-Resume.pdf" target="_blank" class="btn btn-ghost">Resume ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Rashmi Pandey — built with React in mind, shipped in HTML.</p>
+    <p>Based in IST (UTC+5:30) · working with clients worldwide</p>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
