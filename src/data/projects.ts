@@ -1,9 +1,9 @@
 import type { Project } from "../types/project";
 import erp from "../../src/assets/images/erp.jpg"
-import arstonellp from "../../src/assets/images/arstonellp.PNG"
-import admindasboard from "../../src/assets/images/adminpanel.PNG"
-import epay from "../../src/assets/images/epaytlm.PNG"
-import taskflow from "../../src/assets/images/task-flow.PNG"
+import arstonellp from "../../src/assets/images/arstonellp.png"
+import admindasboard from "../../src/assets/images/adminpanel.png"
+import epay from "../../src/assets/images/epaytlm.png"
+import taskflow from "../../src/assets/images/task-flow.png"
 
 export const projects: Project[] = [
   {
@@ -114,9 +114,8 @@ export const projects: Project[] = [
   },
 
   {
-    title: "TaskFlow",
-    description:
-      "A Jira-inspired SaaS project management platform designed around authentication, role-based access, workspaces, projects, tasks, and collaborative workflows. Currently focused on building the core application and authentication foundation.",
+    title: "Ainovesa",
+    description:"Developing a modern project management platform focused on task organization, project tracking, team collaboration, and workflow management. Designed with a responsive user interface, scalable frontend architecture, and a focus on performance and usability, Ainovesa aims to help teams organize projects and manage their workflows more efficiently.",
     technologies: [
       "React",
       "TypeScript",
@@ -124,11 +123,12 @@ export const projects: Project[] = [
       "Axios",
       "React Router",
       "Tailwind CSS",
+      "REST API Integration"
     ],
     category: "Personal SaaS",
     status: "in-development",
     githubUrl:
-      "https://github.com/rashmipanday06/taskflow-web",
+      "https://github.com/rashmipanday06/ainovesa-web",
     featured: true,
     image: taskflow,
   },
