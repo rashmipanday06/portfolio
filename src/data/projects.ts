@@ -1,9 +1,9 @@
 import type { Project } from "../types/project";
 import erp from "../assets/images/erp.jpg"
-import arstonellp from "../assets/images/arstonellp.png"
-import admindasboard from "../assets/images/adminpanel.png"
-import epay from "../assets/images/erp.jpg"
-import taskflow from "../assets/images/task-flow.png"
+import arstonellp from "../assets/images/arstone.png"
+import admindasboard from "../assets/images/admin.png"
+import epay from "../assets/images/epay.png"
+import taskflow from "../assets/images/taskflow.png"
 
 export const projects: Project[] = [
   {
